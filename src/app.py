@@ -76,6 +76,6 @@ def create_app():
         if not current_user.is_admin:
             flash("Access denied.")
             return redirect(url_for("score_board"))
-        return render_template("admin.html")
+        return render_template("admin.html", flag=os.getenv("FLAG"))
 
     return app

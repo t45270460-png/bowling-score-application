@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ログイン スコアボード</title>
+  </head>
+  <body>
+    <h1>XX大学ボウリングサークル</h1>
+    <h2>ログイン画面</h2>
+    <form method="POST">
+      {{ form.hidden_tag() }}
+      <div>
+        {{ form.username.label }} {{ form.username(class="form-control",
+        placeholder="ユーザ名を入力") }} {# エラーメッセージの表示 #} {% if
+        form.username.errors %}
+        <div class="error-message">
+          {% for error in form.username.errors %} {{ error }} {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <div>
+        {{ form.password.label }} {{ form.password(class="form-control",
+        placeholder="パスワードを入力") }} {# ...
+        パスワードのエラー処理も同様に記述 ... #}
+      </div>
+
+      <div>{{ form.submit(class="btn btn-primary") }}</div>
+
+      {# フラッシュメッセージの表示 (Flask標準) #} {% with messages =
+      get_flashed_messages() %} {% if messages %}
+      <ul class="flashes">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+    </form>
+  </body>
+</html>

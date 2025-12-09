@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>スコアボード</title>
+  </head>
+  <body>
+    <h1>スコアボード</h1>
+    <p>ここにスコアボードを表示します。</p>
+    <form method="POST" action="{{ url_for('logout') }}">
+      {{ form.hidden_tag() }}
+
+      <button type="submit">ログアウト</button>
+    </form>
+  </body>
+</html>

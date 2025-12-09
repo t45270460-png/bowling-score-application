@@ -3,9 +3,9 @@ from flask_wtf import FlaskForm
 
 
 class LoginForm(FlaskForm):
-    username = StringField(label="Username", validators=[validators.DataRequired()])
+    username = StringField(label="ユーザ名", validators=[validators.DataRequired()])
     password = PasswordField(
-        label="Password",
+        label="パスワード",
         validators=[validators.DataRequired()],
     )
     submit = SubmitField("ログイン")

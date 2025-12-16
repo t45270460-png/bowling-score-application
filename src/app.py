@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for, session
 from flask_login import (
     LoginManager,
     login_required,
@@ -18,7 +18,10 @@ from src.logger import logger
 def create_app():
     load_dotenv()
     app = Flask(__name__)
-    app.secret_key = os.getenv("SECRET_KEY")
+    secret_key_value = os.getenv("SECRET_KEY")
+    if not secret_key_value:
+        raise ValueError("SECRET_KEY environment variable not set")
+    app.secret_key = secret_key_value
     login_manager = LoginManager()
     login_manager.init_app(app)
     logger.info("Application initialized")
@@ -61,6 +64,7 @@ def create_app():
     @login_required
     def logout():
         logout_user()
+        session.clear()
         flash("Logged out successfully.")
         return redirect(url_for("login"))
 
